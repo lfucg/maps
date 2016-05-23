@@ -1,0 +1,63 @@
+html, body {
+height: 100%;
+font-family: Montserrat; Helvetica, san-serif;
+}
+
+.container-fluid{
+height: 100%;
+padding: 0px;	
+}
+
+#map-canvas { 
+      width: 100%;
+      min-height: 100%;
+       }
+
+#pac-input {
+      text-overflow: ellipsis;
+  }
+
+#info-box {
+    color: #FFF;
+    border-radius: 5px;
+    background-color: #00A388; 
+    width: 30%;
+    min-width: 300px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    margin: 10px;
+    z-index: 1;
+  }
+
+.title {
+  color: #FFF;
+  margin: 15px 0px 0px 0px
+  }
+
+.subtitle{
+  margin:0px 0px 10px 0px;
+}
+
+.meta {
+padding: 15px;
+margin-bottom: 15px;
+border-radius: 5px;
+background-color: #FFF;
+color: #2C3E50;
+}
+
+.last {
+margin-bottom: 0px;
+}
+
+.corridor-name {
+margin: 0px;
+font-weight: bold;
+color: #2C3E50;
+font-size: 1em
+}
+
+.item {
+  margin-bottom: 0px;
+}
