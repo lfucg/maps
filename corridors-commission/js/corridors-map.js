@@ -21,7 +21,7 @@ function initialize(){
 
   map.data.setStyle(style1);
 
-  map.data.addListener('mouseover', function(event) {
+  map.data.addListener('click', function(event) {
   map.data.revertStyle();	
   map.data.overrideStyle(event.feature, {strokeWeight: 8, strokeColor: '#1ABC9C'});
   document.getElementById('corridor-info').innerHTML = 
