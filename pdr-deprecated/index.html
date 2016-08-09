@@ -28,26 +28,22 @@
 
   <body>
   <div class="container-fluid">
-  <div class="row">
-        <div class="col-sm-3 legend">
+        <div id="info-box" class="container">
           <h3 class="title">Purchase of Development Rights Program</h3>
           <p class="subtitle">City of Lexington, Kentucky</p>
             <div class="form-group">
             <input id="pac-input" class="form-control" type="text" placeholder="Search for an address">
             </div>
-          <div >
-            <p class="hidden-xs">This map represents all farms purchased or donated through the Lexington Purchase of Development Rights program. Click on a farm to view more information.</p>
-            <p><i style="color: #16a085" class="fa fa-square"></i> Purchased Easement</p>
-            <p><i style="color: #2980b9" class="fa fa-square"></i> Donated Easement</p>
-            <p><i style="color: #2c3e50" class="fa fa-square"></i> Under Contract for Easement</p>
+          <div class="meta hidden-xs"
+            <p>This map represents all farms purchased or donated through the Lexington Purchase of Development Rights program. Click on a farm to view more information.</p>
+            <p><i style="color: #16a085" class="fa fa-square"></i> PDR Protected Farm</p>
+            <p><i style="color: #2980b9" class="fa fa-square"></i> PDR Protected Farm - Donated</p>
+            <p><i style="color: #2c3e50" class="fa fa-square"></i> Under Contract with PDR Program</p>
             <p><i style="color: #aeaba6" class="fa fa-square"></i> Urban Service Area</p>
-            <p class="hidden-xs">For more information on the program, please vist the <a target="_blank" href="https://www.lexingtonky.gov/departments/purchase-of-development-rights">Purchase of Development Rights website</a>.</p>
+            <p class="last">For more information on the program, please vist the <a target="_blank" href="http://www.lexingtonky.gov/index.aspx?page=497">Purchase of Development Rights website.</a>.</p>
           </div>
         </div>
-        <div class="col-sm-9">
       <div id="map-canvas"></div>
-      </div>
-  </div>
   </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -55,7 +51,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXqhUx3ZQwPBtAVsXg6tz9N_2yvrRydcQ&libraries=places"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
     <script src="js/pdr-map.js"></script>
   </body>
 

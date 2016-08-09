@@ -22,7 +22,7 @@ var infowindow = new google.maps.InfoWindow();
     fillOpacity: '0.4'
     };
 
- var pdrFarm = {
+ var purchased = {
     strokeColor: '#16a085',
     strokeWeight: 2,
     fillColor: '#16a085',
@@ -36,7 +36,7 @@ var infowindow = new google.maps.InfoWindow();
     fillOpacity: '0.5'
     };
 
-    var underContract = {
+   var underContract = {
     strokeColor: '#2c3e50',
     strokeWeight: 2,
     fillColor: '#2c3e50',
@@ -50,10 +50,13 @@ var infowindow = new google.maps.InfoWindow();
   usa.loadGeoJson('data/usa.geojson')
   
   pdr.setStyle(function(feature){
-  var s = status(feature.getProperty('STATUS'),feature.getProperty('FUNDING'))  
-  if (s === 'PDR Protect Farm - Donated'){ return donated}
-  else if (s === 'Under Contract with PDR Program') {return underContract}
-  else {return pdrFarm}   
+  var s = feature.getProperty('Status')
+  var pt = feature.getProperty('FundingTyp')
+
+  if (s === 'Closed' && pt === 'Purchase'){return purchased}
+  else if (s === 'Closed' && pt === 'Donation') {return donated}
+  else if (s === 'Under Contract'){return underContract}	
+  else {return ''}   
   }
   );
 
@@ -64,15 +67,50 @@ var infowindow = new google.maps.InfoWindow();
   
 
  pdr.addListener('click', function(event) {
-
-
-    infowindow.setContent(
-    '<h5>' + event.feature.getProperty('ADDRESS')  + '</h5>'+
+ var s = event.feature.getProperty('Status')
+ var pt = event.feature.getProperty('FundingTyp')
+ var content = ''
+ 
+ var purchaseInfo = '<h4 class="green-text">' + event.feature.getProperty('Address')  + '</h4>'+
+    '<h5 class="gray-text">Farm Information</h5>'+
     '<p class="item"><strong>Application No: </strong>' + event.feature.getProperty('APPNUM') + '</p>' +
-    '<p class="item"><strong>Acreage: </strong>' + event.feature.getProperty('PDR_ACRE') + '</p>' +
-    '<p class="item"><strong>Status: </strong>' + status(event.feature.getProperty('STATUS'),event.feature.getProperty('FUNDING')) + '</p>' +
-    '<a href="http://qpublic9.qpublic.net/ky_fayette_display.php?county=ky_fayette&KEY=' + event.feature.getProperty('PVANUM') + '"> Visit PVA Page</a>'
-    )
+    '<p class="item"><strong>Acreage: </strong>' + event.feature.getProperty('Acreage') + '</p>' +
+    '<p class="item"><strong>Farm Status: </strong>' + event.feature.getProperty('Status') + '</p>' +
+    '<p class="item"><strong>Acquisition Type: </strong>' + event.feature.getProperty('FundingTyp') + '</p>' +
+    
+    '<h5 class="gray-text">Purchase Information</h5>'+
+    '<p class="item"><strong>Fiscal Year: </strong>' + event.feature.getProperty('FiscalYear') + '</p>' +
+    '<p class="item"><strong>Closing Date: </strong>' + dateFormat(event.feature.getProperty('DateClosed')) + '</p>' +
+    '<p class="item"><strong>Total Easement Cost: </strong>' + numeral(event.feature.getProperty('TotalPaid')).format('$0,0.00') + '</p>' +
+    '<p class="item"><strong>Easement Cost Per Acre: </strong>' + numeral(event.feature.getProperty('PerAcre')).format('$0,0.00') + '</p>' +
+    '<p class="item"><strong>Entity Paid: </strong>' + event.feature.getProperty('EntityPaid') + '</p>'
+ 	
+ var donationInfo = '<h4 class="green-text">' + event.feature.getProperty('Address')  + '</h4>'+
+    '<h5 class="gray-text">Farm Information</h5>'+
+    '<p class="item"><strong>Application No: </strong>' + event.feature.getProperty('APPNUM') + '</p>' +
+    '<p class="item"><strong>Acreage: </strong>' + event.feature.getProperty('Acreage') + '</p>' +
+    '<p class="item"><strong>Farm Status: </strong>' + event.feature.getProperty('Status') + '</p>' +
+    '<p class="item"><strong>Acquisition Type: </strong>' + event.feature.getProperty('FundingTyp') + '</p>' +
+    
+    '<h5 class="gray-text">Donation Information</h5>'+
+    '<p class="item"><strong>Fiscal Year: </strong>' + event.feature.getProperty('FiscalYear') + '</p>' +
+    '<p class="item"><strong>Closing Date: </strong>' + dateFormat(event.feature.getProperty('DateClosed')) + '</p>' +
+    '<p class="item"><strong>Donating Entity: </strong>' + event.feature.getProperty('EntityPaid') + '</p>'
+ 
+ var underContractInfo = '<h4 class="green-text">' + event.feature.getProperty('Address')  + '</h4>'+
+    '<h5 class="gray-text">Farm Information</h5>'+
+    '<p class="item"><strong>Application No: </strong>' + event.feature.getProperty('APPNUM') + '</p>' +
+    '<p class="item"><strong>Acreage: </strong>' + event.feature.getProperty('Acreage') + '</p>' +
+    '<p class="item"><strong>Farm Status: </strong>' + event.feature.getProperty('Status') + '</p>' +
+    '<p class="item"><strong>Acquisition Type: </strong>' + event.feature.getProperty('FundingTyp') + '</p>'
+
+  if (s === 'Closed' && pt === 'Purchase'){content = purchaseInfo}
+  else if (s === 'Closed' && pt === 'Donation') {content = donationInfo}
+  else if (s === 'Under Contract'){content = underContractInfo}	
+  else {content = 'No information available.'}   
+
+    infowindow.setContent(content)
+
     var anchor = new google.maps.MVCObject();
         anchor.setValues({ //position of the point
             position: event.latLng,
@@ -152,17 +190,10 @@ var infowindow = new google.maps.InfoWindow();
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-function status(status, funding){
-  var r
-  if (status === 'AO') {
-    r = 'Under Contract with PDR Program'
-  }
-  else if (status === 'PF' && funding === 'D'){
-    r = 'PDR Protect Farm - Donated'
-  }
-  else {
-    r = 'PDR Protected Farm'
-  }
-  return r
+function dateFormat(input){
+	if(input){
+var parts = input.split('/')
+return parts[1] + '/' + parts[2] + '/' + parts[0]
+}
+else{}
 }
