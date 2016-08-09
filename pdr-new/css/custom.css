@@ -1,0 +1,62 @@
+html, body {
+height: 100%;
+font-family: Montserrat; Helvetica, san-serif;
+}
+
+.container-fluid{
+height: 100%;
+}
+
+#map-canvas{
+    width: 100%;
+    height: 100vh;
+  }
+
+#pac-input {
+      text-overflow: ellipsis;
+  }
+
+.legend {
+  }
+
+.title {
+  color: #00A388;
+  margin: 15px 0px 0px 0px
+  }
+
+
+.green-text {
+  color: #00A388;
+ }  
+
+.gray-text {
+  color: #777;
+ }
+
+.subtitle{
+  margin:0px 0px 10px 0px;
+}
+
+.meta {
+padding: 15px;
+margin-bottom: 15px;
+border-radius: 5px;
+background-color: #FFF;
+color: #00A388;
+}
+
+.last {
+margin-bottom: 0px;
+}
+
+.corridor-name {
+margin: 0px;
+font-weight: bold;
+color: #2C3E50;
+font-size: 1em
+}
+
+.item {
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
