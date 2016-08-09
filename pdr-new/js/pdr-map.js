@@ -81,8 +81,8 @@ var infowindow = new google.maps.InfoWindow();
     '<h5 class="gray-text">Purchase Information</h5>'+
     '<p class="item"><strong>Fiscal Year: </strong>' + event.feature.getProperty('FiscalYear') + '</p>' +
     '<p class="item"><strong>Closing Date: </strong>' + dateFormat(event.feature.getProperty('DateClosed')) + '</p>' +
-    '<p class="item"><strong>Total Easement Cost: </strong>' + numeral(event.feature.getProperty('TotalPerAc')).format('$0,0.00') + '</p>' +
-    '<p class="item"><strong>Easement Cost Per Acre: </strong>' + numeral(event.feature.getProperty('PaidPerAcr')).format('$0,0.00') + '</p>' +
+    '<p class="item"><strong>Total Easement Cost: </strong>' + numeral(event.feature.getProperty('TotalPaid')).format('$0,0.00') + '</p>' +
+    '<p class="item"><strong>Easement Cost Per Acre: </strong>' + numeral(event.feature.getProperty('PerAcre')).format('$0,0.00') + '</p>' +
     '<p class="item"><strong>Entity Paid: </strong>' + event.feature.getProperty('EntityPaid') + '</p>'
  	
  var donationInfo = '<h4 class="green-text">' + event.feature.getProperty('Address')  + '</h4>'+
