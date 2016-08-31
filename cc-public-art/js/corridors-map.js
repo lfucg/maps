@@ -17,12 +17,14 @@ function initialize(){
   var corridors = new google.maps.Data()
   var sites = new google.maps.Data()
   var trafficBoxes = new google.maps.Data()
+  var LFUCG = new google.maps.Data()
 
   var infowindow = new google.maps.InfoWindow();
 
   corridors.loadGeoJson('data/corridors.geojson');
   sites.loadGeoJson('data/sites.geojson');
   trafficBoxes.loadGeoJson('data/signalBoxes.geojson');
+  LFUCG.loadGeoJson('data/LFUCG.geojson');
 
   corridors.addListener('click', function(event) {
         var content = 
@@ -51,24 +53,40 @@ function initialize(){
         infowindow.open(map,anchor);
   });
 
+  LFUCG.addListener('click', function(event) {
+        var content = '<strong>Address: </strong>' + event.feature.getProperty("ADDRESS")
+        infowindow.setContent(content);
+        var anchor = new google.maps.MVCObject();
+        anchor.set("position",event.latLng);
+        infowindow.open(map,anchor);
+  });
 
- var green = {icon: {
+
+var green = {
+    strokeColor: '#16a085',
+    strokeWeight: 2,
+    fillColor: '#16a085',
+    fillOpacity: '0.5'
+    };
+
+
+var dot = {icon: {
     path: google.maps.SymbolPath.CIRCLE,
-    fillColor: '#27ae60',
+    fillColor: '#333',
     fillOpacity: 1,
-    scale: 5,
+    scale: 3,
     strokeColor: '#333',
     strokeWeight: 3
     }};
 
-  var blue = {
+var blue = {
     strokeColor: '#2980b9',
     strokeWeight: 4,
     fillColor: '#2980b9',
     fillOpacity: '0.5'
     };
 
-   var red = {
+var red = {
     strokeColor: '#e74c3c',
     strokeWeight: 2,
     fillColor: '#e74c3c',
@@ -77,11 +95,13 @@ function initialize(){
 
   corridors.setStyle(blue);
   sites.setStyle(red)
-  trafficBoxes.setStyle(green)
+  trafficBoxes.setStyle(dot)
+  LFUCG.setStyle(green)
   
   sites.setMap(map)
   corridors.setMap(map)
   trafficBoxes.setMap(map)
+  LFUCG.setMap(map)
 
 
   var defaultBounds = new google.maps.LatLngBounds(
