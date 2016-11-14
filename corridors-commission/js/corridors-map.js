@@ -26,12 +26,10 @@ function initialize(){
   map.data.overrideStyle(event.feature, {strokeWeight: 8, strokeColor: '#1ABC9C'});
   document.getElementById('corridor-info').innerHTML = 
         '<p class="corridor-name">' + event.feature.getProperty('ANNO') + '</p>'
-        + '<p class="corridor-data">Road Class: ' + event.feature.getProperty('RDCLASS') + '</p>'
-        + '<p class="corridor-data">Maintenance Responsibility: ' + event.feature.getProperty('MAINTENANC') + '</p>'
   });
  
 
-  map.data.loadGeoJson('data/corridors.geojson')
+  map.data.loadGeoJson('data/corridors-v2.geojson')
 
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(38.00536101289634, -84.54357147216797),
