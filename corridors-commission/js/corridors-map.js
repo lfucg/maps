@@ -29,6 +29,7 @@ function initialize(){
   });
  
 
+  //Map Data
   map.data.loadGeoJson('data/corridors-v2.geojson')
 
   var defaultBounds = new google.maps.LatLngBounds(
