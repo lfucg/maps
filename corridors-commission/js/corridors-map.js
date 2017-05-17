@@ -28,9 +28,7 @@ function initialize(){
         '<p class="corridor-name">' + event.feature.getProperty('ANNO') + '</p>'
   });
  
-
-  //Map Data
-  map.data.loadGeoJson('data/corridors-v2.geojson')
+  map.data.loadGeoJson('data/corridors-v3.geojson')
 
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(38.00536101289634, -84.54357147216797),
