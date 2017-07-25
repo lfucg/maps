@@ -1,3 +1,7 @@
+////Update Data URLs Here
+var pdrUrl = 'data/pdr.geojson'
+var usaUrl = 'data/usa.geojson'
+
 function initialize(){
 
   var markers = [];
@@ -46,8 +50,8 @@ var infowindow = new google.maps.InfoWindow();
   var pdr = new google.maps.Data()
   var usa = new google.maps.Data()
 
-  pdr.loadGeoJson('data/pdr.geojson')
-  usa.loadGeoJson('data/usa.geojson')
+  pdr.loadGeoJson(pdrUrl)
+  usa.loadGeoJson(usaUrl)
   
   pdr.setStyle(function(feature){
   var s = feature.getProperty('Status')

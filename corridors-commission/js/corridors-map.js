@@ -1,3 +1,6 @@
+//Update Data URL Here
+var dataUrl = 'data/corridors-v3.geojson'
+
 function initialize(){
 
   var markers = [];
@@ -28,7 +31,7 @@ function initialize(){
         '<p class="corridor-name">' + event.feature.getProperty('ANNO') + '</p>'
   });
  
-  map.data.loadGeoJson('data/corridors-v3.geojson')
+  map.data.loadGeoJson(dataUrl)
 
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(38.00536101289634, -84.54357147216797),
